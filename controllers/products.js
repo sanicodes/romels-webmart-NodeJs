@@ -11,10 +11,11 @@ exports.addProduct = async (req, res) => {
         gPath = await cloudinary.uploader.upload(req.file.path);
         fs.unlinkSync(req.file.path);
     }catch(err){
-        res.status(400).json({
-            message: err._message
-        })
+        return res.status(400).json({
+            message:"IMAGE UPLOAD FAILED"
+        })   
     }
+   
     
     //Category Check
     let cat = new Category({
